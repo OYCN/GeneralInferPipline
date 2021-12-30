@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['kall_0',['kALL',['../classcore_1_1Blob.html#a5c3402a2e0e6b7af3baf0d3f1e6c8b54a32fed57aed86b0b4e9d200bbdab6bd55',1,'core::Blob']]],
+  ['kbool_1',['kBOOL',['../namespacecommon.html#aad67882d839f0b615fbeb72898806da0a65d294ade613161e5ea557e935133213',1,'common']]],
+  ['kdevice_2',['kDEVICE',['../classcore_1_1Blob.html#a5c3402a2e0e6b7af3baf0d3f1e6c8b54a937567370d5d3f2deca89ec852c530b3',1,'core::Blob']]],
+  ['kfloat16_3',['kFLOAT16',['../namespacecommon.html#aad67882d839f0b615fbeb72898806da0ab0ce4785b9fd54bb48cd17839c2139e8',1,'common']]],
+  ['kfloat32_4',['kFLOAT32',['../namespacecommon.html#aad67882d839f0b615fbeb72898806da0a301f3a167870b9b96bb0cef222e840ca',1,'common']]],
+  ['kfloat64_5',['kFLOAT64',['../namespacecommon.html#aad67882d839f0b615fbeb72898806da0aaf8ee424b90f9be92f84682951a40030',1,'common']]],
+  ['khost_6',['kHOST',['../classcore_1_1Blob.html#a5c3402a2e0e6b7af3baf0d3f1e6c8b54a64674d9a5e1b2b516f9f535600e3b9ec',1,'core::Blob']]],
+  ['kinput_7',['kINPUT',['../structnode_1_1BlobInfo.html#a4175b7b8e377e869e28895156c29c08aad1655338b7956f2e8c46ef4754cbc88c',1,'node::BlobInfo']]],
+  ['kint16_8',['kINT16',['../namespacecommon.html#aad67882d839f0b615fbeb72898806da0a4995a8359faf06dc440d65fa64b3410b',1,'common']]],
+  ['kint32_9',['kINT32',['../namespacecommon.html#aad67882d839f0b615fbeb72898806da0abd073fcbb15020b25a70e2cd95f9f4a9',1,'common']]],
+  ['kint64_10',['kINT64',['../namespacecommon.html#aad67882d839f0b615fbeb72898806da0a223b86006bb063f2a58200621e0656d5',1,'common']]],
+  ['kint8_11',['kINT8',['../namespacecommon.html#aad67882d839f0b615fbeb72898806da0a69c1a4a69db0e50820cf63122f90ad09',1,'common']]],
+  ['knode_12',['kNODE',['../namespacecore.html#a9795e80121ea026a6c3b270679b9c688a0e466658838fe48ecc9a91cdca6f2c99',1,'core']]],
+  ['knormal_13',['kNORMAL',['../classcore_1_1Blob.html#a7687e00a8901d459b776d8ece9eb448ba2e275b9b179201e390f80290dd0eee30',1,'core::Blob']]],
+  ['koutput_14',['kOUTPUT',['../structnode_1_1BlobInfo.html#a4175b7b8e377e869e28895156c29c08aa1dbe05bc4f6ee27c5e62f5e8a070c39b',1,'node::BlobInfo']]],
+  ['kpagelock_15',['kPAGELOCK',['../classcore_1_1Blob.html#a7687e00a8901d459b776d8ece9eb448bae226c190bbd1d93407a8c0389af7f83f',1,'core::Blob']]],
+  ['kuint16_16',['kUINT16',['../namespacecommon.html#aad67882d839f0b615fbeb72898806da0a3500227c188f1328650855b481471a8c',1,'common']]],
+  ['kuint32_17',['kUINT32',['../namespacecommon.html#aad67882d839f0b615fbeb72898806da0a4ff321e2f4f9df8e42f5ab2409b1a4d2',1,'common']]],
+  ['kuint64_18',['kUINT64',['../namespacecommon.html#aad67882d839f0b615fbeb72898806da0a708e3f54330e89a9f3bb5ace3524a21f',1,'common']]],
+  ['kuint8_19',['kUINT8',['../namespacecommon.html#aad67882d839f0b615fbeb72898806da0a159244e0ab6cea87daa7eaa8f6e19937',1,'common']]],
+  ['kunified_20',['kUNIFIED',['../classcore_1_1Blob.html#a7687e00a8901d459b776d8ece9eb448ba3d3b761dc47a44083328300fd14f2939',1,'core::Blob']]],
+  ['kunknow_21',['kUNKNOW',['../namespacecommon.html#aad67882d839f0b615fbeb72898806da0ac6abb05f546972ce2f743ee900123904',1,'common']]],
+  ['kzerocopy_22',['kZEROCOPY',['../classcore_1_1Blob.html#a7687e00a8901d459b776d8ece9eb448ba6fc96778262c9d9b5e9c1266549b59e3',1,'core::Blob']]]
+];
