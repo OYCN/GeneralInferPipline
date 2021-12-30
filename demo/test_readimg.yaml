@@ -1,0 +1,22 @@
+source:
+  node_type: "ImageOpenCV"
+  data_type: "uint8"
+  shape: [1, 3, 576, 768]
+  files: ["../demo/assets/dog.jpg"]
+  # out
+
+resize:
+  node_type: "ResizeOpenCV"
+  img: "@source.out"
+  data_type: "$source.data_type"
+  from: "$source.shape"
+  to: [1, 3, 640, 640]
+  padding: true
+  # out
+
+display:
+  node_type: "ShowOpenCV"
+  img: "@resize.out"
+  shape: "$resize.to"
+  data_type: "$resize.data_type"
+  wait_num: 0

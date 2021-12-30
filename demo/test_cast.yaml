@@ -1,0 +1,29 @@
+source:
+  node_type: "Camera"
+  data_type: "uint8"
+  shape: [1, 3, 640, 640]
+  device: 0
+  # out
+
+tofloat:
+  node_type: "Cast"
+  in: "@source.out"
+  shape: "$source.shape"
+  from: "$source.data_type"
+  to: "float32"
+  # out
+
+tochar:
+  node_type: "Cast"
+  in: "@tofloat.out"
+  shape: "$tofloat.shape"
+  from: "$tofloat.to"
+  to: "char"
+  # out
+
+display:
+  node_type: "ShowOpenCV"
+  img: "@tochar.out"
+  shape: "$tochar.shape"
+  data_type: "$tochar.to"
+  wait_num: 1

@@ -1,0 +1,69 @@
+# source:
+#   node_type: "Camera"
+#   data_type: "char"
+#   shape: [1, 3, 640, 640]
+#   device: 0
+#   # out
+
+source:
+  node_type: "ImageOpenCV"
+  data_type: "uint8"
+  shape: [1, 3, 576, 768]
+  files: ["../demo/assets/dog.jpg"]
+  # out
+
+resize:
+  node_type: "ResizeOpenCV"
+  img: "@source.out"
+  data_type: "$source.data_type"
+  from: "$source.shape"
+  to: [1, 3, 640, 640]
+  padding: true
+  splitC: true
+  # out
+
+tofloat:
+  node_type: "Cast"
+  in: "@resize.out"
+  shape: "$resize.to"
+  from: "$resize.data_type"
+  to: "float32"
+  # out
+
+infer:
+  node_type: "InferrerTRT"
+  images: "@tofloat.out"
+  file: "/path/to/engine"
+
+postprocess:
+  node_type: "YoloPost"
+  in: "@infer.output"
+  org_shape: "$source.shape"
+  net_shape: "$resize.to"
+  num_classes: 80
+  nms_thresh: 0.45
+  bbox_conf_thresh: 0.3
+  strides: [8, 16, 32]
+  # box
+  # prob
+  # label
+  # num
+
+draw:
+  node_type: "DetectionImgGen"
+  box: "@postprocess.box"
+  label: "@postprocess.label"
+  prob: "@postprocess.prob"
+  num: "@postprocess.num"
+  img: "@source.out"
+  shape: "$source.shape"
+  data_type: "$source.data_type"
+  rule: "yolox80"
+  # out
+
+display:
+  node_type: "ShowOpenCV"
+  img: "@draw.out"
+  shape: "$draw.shape"
+  data_type: "$draw.data_type"
+  wait_num: 0

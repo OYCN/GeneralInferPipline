@@ -1,0 +1,21 @@
+source:
+  node_type: "Camera"
+  data_type: "uint8"
+  shape: [1, 3, 640, 640]
+  device: 0
+  # out
+
+resize:
+  node_type: "ResizeOpenCV"
+  img: "@source.out"
+  data_type: "$source.data_type"
+  from: "$source.shape"
+  to: [1, 3, 480, 640]
+  # out
+
+display:
+  node_type: "ShowOpenCV"
+  img: "@resize.out"
+  shape: "$resize.to"
+  data_type: "$resize.data_type"
+  wait_num: 1
