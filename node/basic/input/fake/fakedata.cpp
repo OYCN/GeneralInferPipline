@@ -27,7 +27,8 @@ FakeData::~FakeData() {
     // Pass
 }
 
-bool FakeData::init(YAML::Node cfg) {
+bool FakeData::init(YAML::Node* c) {
+    YAML::Node& cfg = *c;
     std::string type = cfg["data_type"].as<std::string>();
     mDataType = common::str2Type(type);
     CHECK(mDataType != common::DataType::kUNKNOW)

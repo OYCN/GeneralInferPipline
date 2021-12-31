@@ -46,7 +46,7 @@ class INode {
      * @return true
      * @return false
      */
-    virtual bool init(YAML::Node cfg) = 0;
+    virtual bool init(YAML::Node* c) = 0;
 
     /**
      * @brief Register the blob to memory manager

@@ -27,7 +27,7 @@ Template::~Template() {
     // Pass
 }
 
-bool Template::init(YAML::Node cfg) {
+bool Template::init(YAML::Node* c) {
     // Pass
     return false;
 }

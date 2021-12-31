@@ -27,7 +27,8 @@ Cast::~Cast() {
     // Pass
 }
 
-bool Cast::init(YAML::Node cfg) {
+bool Cast::init(YAML::Node* c) {
+    YAML::Node& cfg = *c;
     std::vector<size_t> shape = cfg["shape"].as<std::vector<size_t>>();
     if (shape.size() <= 0) {
         LOG(ERROR) << "Size of shape is 0";

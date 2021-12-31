@@ -27,7 +27,8 @@ Camera::~Camera() {
     // Pass
 }
 
-bool Camera::init(YAML::Node cfg) {
+bool Camera::init(YAML::Node* c) {
+    YAML::Node& cfg = *c;
     IF_HAS_ATTR("Camera", cfg, "data_type", "str");
     std::string type = cfg["data_type"].as<std::string>();
     auto t = common::str2Type(type);

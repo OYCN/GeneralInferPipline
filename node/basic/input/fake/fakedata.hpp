@@ -33,7 +33,7 @@ class FakeData : public INode {
     ~FakeData();
 
  public:
-    bool init(YAML::Node cfg) override;
+    bool init(YAML::Node* c) override;
     std::vector<BlobInfo> registerBlob() override;
     bool fetchBlob(const std::map<std::string, core::Blob*>& m) override;
     bool verification() override;

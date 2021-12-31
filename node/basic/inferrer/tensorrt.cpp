@@ -41,7 +41,8 @@ InferrerTRT::~InferrerTRT() {
     }
 }
 
-bool InferrerTRT::init(YAML::Node cfg) {
+bool InferrerTRT::init(YAML::Node* c) {
+    YAML::Node& cfg = *c;
     if (cfg.IsNull()) {
         return false;
     }

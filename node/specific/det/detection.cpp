@@ -33,7 +33,8 @@ DetectionImgGen::~DetectionImgGen() {
     // Pass
 }
 
-bool DetectionImgGen::init(YAML::Node cfg) {
+bool DetectionImgGen::init(YAML::Node* c) {
+    YAML::Node& cfg = *c;
     IF_HAS_ATTR("DetectionImgGen", cfg, "data_type", "str");
     std::string type = cfg["data_type"].as<std::string>();
     auto t = common::str2Type(type);
@@ -142,9 +143,11 @@ bool DetectionImgGen::exec(bool debug) {
              static_cast<int>(this_box[2]), static_cast<int>(this_box[3])},
             color * 255, 2);
         std::string label_name = mGetClass(label[i]);
+        std::string label_prob = std::to_string(prob[i]);
+        std::string display_str = label_name + " " + label_prob;
         int baseLine = 0;
         cv::Size label_size = cv::getTextSize(
-            label_name, cv::FONT_HERSHEY_SIMPLEX, 0.4, 1, &baseLine);
+            display_str, cv::FONT_HERSHEY_SIMPLEX, 0.4, 1, &baseLine);
         cv::Scalar txt_bk_color = color * 0.7 * 255;
         int x = this_box[0];
         int y = this_box[1] + 1;
@@ -154,7 +157,7 @@ bool DetectionImgGen::exec(bool debug) {
             cv::Rect(cv::Point(x, y),
                      cv::Size(label_size.width, label_size.height + baseLine)),
             txt_bk_color, -1);
-        cv::putText(img, label_name, cv::Point(x, y + label_size.height),
+        cv::putText(img, display_str, cv::Point(x, y + label_size.height),
                     cv::FONT_HERSHEY_SIMPLEX, 0.4, txt_color, 1);
     }
     return true;

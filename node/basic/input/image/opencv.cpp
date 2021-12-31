@@ -29,7 +29,8 @@ ImageOpenCV::~ImageOpenCV() {
     // Pass
 }
 
-bool ImageOpenCV::init(YAML::Node cfg) {
+bool ImageOpenCV::init(YAML::Node* c) {
+    YAML::Node& cfg = *c;
     IF_HAS_ATTR("ImageOpenCV", cfg, "files", "list(str)");
     mFiles = cfg["files"].as<std::vector<std::string>>();
     IF_HAS_ATTR("ImageOpenCV", cfg, "shape", "list(int)");

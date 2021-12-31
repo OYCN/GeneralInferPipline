@@ -124,7 +124,9 @@ bool Core::genPipline() {
                                << "Unsupported Node Type: " << node_type;
         LOG(INFO) << "[" << name << "]"
                   << "Creat node done";
-        CHECK(node->init(mCfg[name])) << "[" << name << "]";
+        YAML::Node this_node_cfg = mCfg[name];
+        CHECK(node->init(&this_node_cfg)) << "[" << name << "]";
+        mCfg[name] = this_node_cfg;
         LOG(INFO) << "[" << name << "]"
                   << "Init node done";
 

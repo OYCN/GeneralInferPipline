@@ -33,7 +33,8 @@ YoloPost::~YoloPost() {
     // Pass
 }
 
-bool YoloPost::init(YAML::Node cfg) {
+bool YoloPost::init(YAML::Node* c) {
+    YAML::Node& cfg = *c;
     std::vector<size_t> shape;
     shape = cfg["org_shape"].as<std::vector<size_t>>();
     mOrgImgW = shape[shape.size() - 1];

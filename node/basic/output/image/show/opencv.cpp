@@ -29,7 +29,8 @@ ShowOpenCV::~ShowOpenCV() {
     // Pass
 }
 
-bool ShowOpenCV::init(YAML::Node cfg) {
+bool ShowOpenCV::init(YAML::Node* c) {
+    YAML::Node& cfg = *c;
     // wait_num
     IF_HAS_ATTR("ShowOpenCV", cfg, "wait_num", "int");
     mWaitNum = cfg["wait_num"].as<int>();
