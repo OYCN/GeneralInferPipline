@@ -51,6 +51,7 @@ class CameraCSI : public INode {
     cv::VideoCapture mCapture;
     size_t mOutputW = 0;
     size_t mOutputH = 0;
+    size_t mOutputC = 0;
 };
 
 }  // namespace node

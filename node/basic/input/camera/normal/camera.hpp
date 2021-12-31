@@ -49,11 +49,9 @@ class CameraNormal : public INode {
     core::Blob* mBlob = nullptr;
 
     cv::VideoCapture mCapture;
-    size_t mSize;
     size_t mOutputW = 0;
     size_t mOutputH = 0;
     size_t mOutputC = 0;
-    size_t mOutputB = 0;
 };
 
 }  // namespace node

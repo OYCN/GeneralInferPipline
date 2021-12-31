@@ -58,9 +58,13 @@ bool CameraCSI::init(YAML::Node* c) {
     NODE_ASSERT(mCapture.open(d, cv::CAP_GSTREAMER),
                 "CSI device open failed: " << d);
 
+    cv::Mat t;
+    mCapture.read(t);
+    mOutputC = t.channels();
+
     // update cfg
     cfg["data_type"] = common::getString(common::DataType::kINT8);
-    cfg["shape"] = std::vector<size_t>({1, 3, mOutputH, mOutputW});
+    cfg["shape"] = std::vector<size_t>({1, mOutputC, mOutputH, mOutputW});
 
     return true;
 }
@@ -71,7 +75,7 @@ std::vector<BlobInfo> CameraCSI::registerBlob() {
     info.type = BlobInfo::kOUTPUT;
     info.args.mode = BLOB_GLOBAL_MODE;
     info.args.target = core::Blob::Target::kALL;
-    info.args.size = mOutputW * mOutputH * 3;
+    info.args.size = mOutputW * mOutputH * mOutputC;
     return {info};
 }
 
@@ -90,7 +94,7 @@ bool CameraCSI::verification() {
 }
 
 bool CameraCSI::exec(bool debug) {
-    cv::Mat output(mOutputH, mOutputW, CV_MAKETYPE(CV_8U, 3),
+    cv::Mat output(mOutputH, mOutputW, CV_MAKETYPE(CV_8U, mOutputC),
                    mBlob->getHostPtr<char>());
     NODE_ASSERT(mCapture.read(output), "[" << mName << "]"
                                            << " Camera read failed");
