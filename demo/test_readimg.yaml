@@ -12,6 +12,7 @@ resize:
   from: "$source.shape"
   to: [1, 3, 640, 640]
   padding: true
+  splitC: false
   # out
 
 display:

@@ -11,6 +11,8 @@ resize:
   data_type: "$source.data_type"
   from: "$source.shape"
   to: [1, 3, 480, 640]
+  padding: false
+  splitC: false
   # out
 
 display:
