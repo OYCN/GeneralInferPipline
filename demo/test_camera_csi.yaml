@@ -1,0 +1,28 @@
+source:
+  node_type: "CameraCSI"
+  capture_width: 1280
+  capture_height: 720
+  display_width: 1280
+  display_height: 720
+  framerate: 60
+  flip_method: 0
+  # $data_type
+  # $shape
+  # out
+
+resize:
+  node_type: "ResizeOpenCV"
+  img: "@source.out"
+  data_type: "$source.data_type"
+  from: "$source.shape"
+  to: [1, 3, 480, 640]
+  padding: false
+  splitC: false
+  # out
+
+display:
+  node_type: "ShowOpenCV"
+  img: "@resize.out"
+  shape: "$resize.to"
+  data_type: "$resize.data_type"
+  wait_num: 1

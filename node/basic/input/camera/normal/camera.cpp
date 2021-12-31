@@ -18,27 +18,27 @@
 
 namespace node {
 
-Camera::Camera(core::Context* ctx, const char* name) {
+CameraNormal::CameraNormal(core::Context* ctx, const char* name) {
     // Pass
     mName = name;
 }
 
-Camera::~Camera() {
+CameraNormal::~CameraNormal() {
     // Pass
 }
 
-bool Camera::init(YAML::Node* c) {
+bool CameraNormal::init(YAML::Node* c) {
     YAML::Node& cfg = *c;
-    IF_HAS_ATTR("Camera", cfg, "data_type", "str");
+    IF_HAS_ATTR("CameraNormal", cfg, "data_type", "str");
     std::string type = cfg["data_type"].as<std::string>();
     auto t = common::str2Type(type);
     CHECK(t == common::DataType::kUINT8 || t == common::DataType::kINT8)
         << "Unsupported type: " << type;
 
-    IF_HAS_ATTR("Camera", cfg, "shape", "list(int)");
+    IF_HAS_ATTR("CameraNormal", cfg, "shape", "list(int)");
     auto shape = cfg["shape"].as<std::vector<size_t>>();
     NODE_ASSERT(shape.size() >= 2,
-                "[Camera] shape must at least 2D: " << cfg["shape"]);
+                "[CameraNormal] shape must at least 2D: " << cfg["shape"]);
     auto bchw = parseShape(shape);
     mOutputW = std::get<3>(bchw);
     mOutputH = std::get<2>(bchw);
@@ -49,12 +49,14 @@ bool Camera::init(YAML::Node* c) {
     mSize = common::getSize(t) * mOutputW * mOutputH * mOutputC * mOutputB;
     NODE_ASSERT(mSize > 0, "Size is illegal: " << mSize);
 
-    IF_HAS_ATTR("Camera", cfg, "device", "int");
+    IF_HAS_ATTR("CameraNormal", cfg, "device", "int");
     int device = cfg["device"].as<int>();
-    return mCapture.open(device);
+    NODE_ASSERT(mCapture.open(device), "Device: " << device << " open failed");
+
+    return true;
 }
 
-std::vector<BlobInfo> Camera::registerBlob() {
+std::vector<BlobInfo> CameraNormal::registerBlob() {
     BlobInfo info;
     info.name = output_name;
     info.type = BlobInfo::kOUTPUT;
@@ -64,7 +66,7 @@ std::vector<BlobInfo> Camera::registerBlob() {
     return {info};
 }
 
-bool Camera::fetchBlob(const std::map<std::string, core::Blob*>& m) {
+bool CameraNormal::fetchBlob(const std::map<std::string, core::Blob*>& m) {
     if (m.find(output_name) != m.end()) {
         mBlob = m.at(output_name);
         return true;
@@ -73,12 +75,12 @@ bool Camera::fetchBlob(const std::map<std::string, core::Blob*>& m) {
     }
 }
 
-bool Camera::verification() {
+bool CameraNormal::verification() {
     // Pass
     return true;
 }
 
-bool Camera::exec(bool debug) {
+bool CameraNormal::exec(bool debug) {
     cv::Mat frame;
     mCapture >> frame;
     cv::Mat output(mOutputH, mOutputW, CV_MAKETYPE(CV_8U, mOutputC),
@@ -88,6 +90,6 @@ bool Camera::exec(bool debug) {
     return true;
 }
 
-REGISTER_NODE(Camera);
+REGISTER_NODE(CameraNormal);
 
 }  // namespace node
